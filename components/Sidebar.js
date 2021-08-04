@@ -3,10 +3,19 @@ import { Avatar, Button, IconButton } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ChatIcon from "@material-ui/icons/Chat";
 import SearchIcon from "@material-ui/icons/Search";
+import * as EmailValidator from "email-validator";
 
 export default function Sidebar() {
+  const createChat = () => {
+    const input = prompt("Please Enter an email address");
+    if (!input) return null;
+    if (EmailValidator.validate(input)) {
+      // we need to add the chat into DB "chats" collection
+    }
+  };
   return (
     <Container>
+      <title>Home Page</title>
       <Header>
         <UserAvatar />
         <IconsContainer>
@@ -22,7 +31,7 @@ export default function Sidebar() {
         <SearchIcon />
         <SearchInput placeholder="Search in chats" />
       </Search>
-      <SidebarButton>
+      <SidebarButton onClick={createChat}>
         <Button>START A NEW CHAT</Button>
       </SidebarButton>
       {/* List of th Chats */}
@@ -62,7 +71,7 @@ const Header = styled.div`
   align-items: center;
   padding: 15px;
   height: 80px;
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 1px solid black;
 `;
 
 const UserAvatar = styled(Avatar)`
